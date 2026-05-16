@@ -1,0 +1,28 @@
+rules:
+  - type: validation
+    name: sensor_id
+    field: sensor_id
+    check: not_null
+    on_fail: reject
+
+  - type: anomaly_detection
+    name: temperature_range
+    field: temperature
+    method: range
+    min_value: -50
+    max_value: 150
+    on_anomaly: reject
+
+  - type: type_coercion
+    name: ts_datetime
+    field: timestamp
+    target_type: datetime
+    datetime_format: "%Y-%m-%dT%H:%M:%SZ"
+
+  - type: anomaly_detection
+    name: humidity_iqr
+    field: humidity
+    method: iqr
+    q1: 30
+    q3: 70
+    iqr_multiplier: 1.5
