@@ -1,0 +1,25 @@
+rules:
+  - type: type_coercion
+    name: amount_float
+    field: amount
+    target_type: float
+    on_fail: reject
+
+  - type: validation
+    name: currency_enum
+    field: currency
+    check: enum
+    values: ["USD", "EUR", "GBP"]
+    on_fail: reject
+
+  - type: validation
+    name: txn_date
+    field: transaction_date
+    check: regex
+    pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+    on_fail: warn
+
+  - type: standardization
+    name: txn_date_iso
+    field: transaction_date
+    format: date_iso

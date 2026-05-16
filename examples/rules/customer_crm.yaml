@@ -1,0 +1,34 @@
+rules:
+  - type: validation
+    name: email_not_null
+    field: email
+    check: not_null
+    on_fail: reject
+
+  - type: validation
+    name: email_format
+    field: email
+    check: regex
+    pattern: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+    on_fail: warn
+
+  - type: transformation
+    name: trim_name
+    field: name
+    transform: strip
+
+  - type: standardization
+    name: name_title
+    field: name
+    format: name_titlecase
+
+  - type: masking
+    name: mask_email
+    field: email
+    strategy: email
+
+  - type: type_coercion
+    name: id_int
+    field: customer_id
+    target_type: int
+    on_fail: reject

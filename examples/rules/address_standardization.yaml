@@ -1,0 +1,21 @@
+rules:
+  - type: transformation
+    name: trim_street
+    field: street
+    transform: strip
+
+  - type: standardization
+    name: postal_us
+    field: postal_code
+    format: postal_code_us
+
+  - type: standardization
+    name: titlecase_city
+    field: city
+    format: name_titlecase
+
+  - type: validation
+    name: state_not_null
+    field: state
+    check: not_null
+    on_fail: reject
