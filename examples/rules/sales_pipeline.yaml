@@ -1,0 +1,24 @@
+rules:
+  - type: validation
+    name: deal_id
+    field: deal_id
+    check: not_null
+    on_fail: reject
+
+  - type: validation
+    name: stage_enum
+    field: stage
+    check: enum
+    values: ["lead", "qualified", "proposal", "closed_won", "closed_lost"]
+    on_fail: warn
+
+  - type: transformation
+    name: trim_company
+    field: company
+    transform: strip
+
+  - type: type_coercion
+    name: amount_float
+    field: amount
+    target_type: float
+    on_fail: reject

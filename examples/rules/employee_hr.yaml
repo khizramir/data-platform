@@ -1,0 +1,30 @@
+rules:
+  - type: validation
+    name: emp_id_required
+    field: employee_id
+    check: not_null
+    on_fail: reject
+
+  - type: validation
+    name: ssn_format
+    field: ssn
+    check: regex
+    pattern: "^\\d{3}-\\d{2}-\\d{4}$"
+    on_fail: warn
+
+  - type: transformation
+    name: name_title
+    field: full_name
+    transform: strip
+
+  - type: standardization
+    name: email_lower
+    field: email
+    format: email
+
+  - type: masking
+    name: mask_ssn
+    field: ssn
+    strategy: partial
+    visible_chars: 4
+    position: end
