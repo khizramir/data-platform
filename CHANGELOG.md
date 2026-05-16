@@ -6,6 +6,25 @@ All notable changes to this project will be documented in this file.
 
 - Work in progress.
 
+## v0.1.0 - 2026-05-16
+
+Initial release v0.1.0 containing the following phases:
+
+- Phase 1: Core plugin architecture
+	- Plugin base classes and lifecycle management (`PluginManager`, `PluginRegistry`).
+	- Example PostgreSQL plugin.
+	- Unit tests for registry and manager.
+
+- Phase 2: Cleaning engine + Historization
+	- Rules-based cleaning engine with validation, transformation, standardization, type coercion, masking, anomaly detection.
+	- YAML loader for rule definitions and example rule sets.
+	- In-memory SCD Type 2 historization manager.
+	- Tests for cleaning and historization.
+
+- Phase 3: CI/CD pipeline + Documentation
+	- GitHub Actions workflow to run tests on push to `main` including caching for Poetry, pip, and `.venv`.
+	- README with usage examples, and example rule YAML files.
+
 ## Phases
 
 ### Phase 1: Core plugin architecture
