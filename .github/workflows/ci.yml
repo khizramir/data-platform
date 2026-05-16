@@ -35,6 +35,7 @@ jobs:
           path: |
             ~/.cache/pypoetry
             ~/.cache/pip
+            .venv
           key: ${{ runner.os }}-poetry-${{ hashFiles('**/pyproject.toml') }}
           restore-keys: |
             ${{ runner.os }}-poetry-
